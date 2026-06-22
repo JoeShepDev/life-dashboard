@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Joseph Life Dashboard</title>
+        <link rel="stylesheet" href="style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <h1>Life Dashboard</h1>
+
+        <div aria-label="Countdown Timer">
+            <h2>MOVE IN COUNTDOWN</h2>
+            <span id="countdown"></span>
+        </div>
+
+        <div aria-label="checklist" id="checklist">
+            
+        </div>
+
+        <div id="fund" aria-label="Move Out Fund">
+
+        </div>
+
+        <script>
+            setInterval(function()
+            {
+                const total = new Date("2026-08-01") - new Date()
+
+                const days = Math.floor(total / (1000 * 60 * 60 * 24))
+                const hours = Math.floor((total % (1000 * 60 * 60 * 24) ) / (1000 * 60 * 60))
+                const minutes = Math.floor((total % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((total % (1000 * 60)) / 1000)
+
+                document.getElementById("countdown").innerHTML = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`
+            }, 1000)
+
+            const checklist = [
+                { name: "Renters Insurance", done: true},
+                { name: "Utilities", done: false},
+                { name: "Sedeta L-shaped desk (grey)", done: false},
+                { name: "Full Matress", done: false},
+                { name: "Elgato Key Light", done: false},
+                { name: "ArcaLoot Mousepad", done: false},
+                { name: "Logitech C920", done: false},
+                { name: "Acoustic Foam Panels", done: false},
+                { name: "Blackout Curtains", done: false},
+                { name: "Bins", done: false},
+                { name: "LED Strips", done: false},
+                { name: "Sheets", done: true},
+                { name: "Curtain Rod", done: false},
+                { name: "Command Strips", done: false}
+            ]
+
+            checklist.forEach(function(item)
+            {
+                const name = item.name
+                const status = item.done
+
+                const checked = item.done ? "checked" : ""
+
+                document.getElementById("checklist").innerHTML += `<div><input type="checkbox" ${checked}> ${name}</div>` 
+            })
+        </script>
+    </body>
+</html>
